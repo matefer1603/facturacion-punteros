@@ -12,9 +12,8 @@ int main(int argc, char *argv[])
     char nombre[50];
     char cedula[50];
 
-    // Inicio
     printf("*********BIENVENIDO AL SISTEMA DE FACTURACIÓN DE SmartTech***********\n");
-    // Menu Principal
+    
     do
     {
         opcion1 = menuPrincipal();
