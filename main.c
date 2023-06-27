@@ -3,17 +3,18 @@
 
 int main(int argc, char *argv[])
 {
-    int opcion1 = 0, continuar1 = 0;
+    int *opcion1 = 0, *continuar1 = 0;
     char opcion2;
-    float num1 = 0, num2 = 0, num3 = 0;
-    float prca = 50, prcb = 35, prcc = 200;
-    float tota = 0, totb = 0, totc = 0;
-    float subtotal = 0, total = 0;
+    float *num1 = 0, *num2 = 0, *num3 = 0;
+    float *prca = 50, *prcb = 35, *prcc = 200;
+    float *tota = 0, *totb = 0, *totc = 0;
+    float *subtotal = 0, *total = 0;
     char nombre[50];
     char cedula[50];
 
+    // Inicio
     printf("*********BIENVENIDO AL SISTEMA DE FACTURACIÓN DE SmartTech***********\n");
-    
+    // Menu Principal
     do
     {
         opcion1 = menuPrincipal();
