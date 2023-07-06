@@ -1,87 +1,46 @@
 #include <stdio.h>
-#include "menus.h"
+#include "funciones.h"
+#define maxP 100
 
-int main(int argc, char *argv[])
-{
-    int *opcion1 = 0, *continuar1 = 0;
-    char opcion2;
-    float *num1 = 0, *num2 = 0, *num3 = 0;
-    float *prca = 50, *prcb = 35, *prcc = 200;
-    float *tota = 0, *totb = 0, *totc = 0;
-    float *subtotal = 0, *total = 0;
+typedef struct {
     char nombre[50];
-    char cedula[50];
+    float precio;
+} Producto;
 
-    // Inicio
-    printf("*********BIENVENIDO AL SISTEMA DE FACTURACIÓN DE SmartTech***********\n");
-    // Menu Principal
-    do
-    {
-        opcion1 = menuPrincipal();
+void agregarProducto(Producto *productos, int *numProductos);
+void mostrarFactura(Producto *productos, int numProductos);
 
-        switch (opcion1)
-        {
-        case 1:
-            do
-            {
-                opcion2 = menuProductos();
+int main() {
+    Producto productos[maxP];
+    int numProductos = 0;
+    char opcion;
 
-                switch (opcion2)
-                {
-                case 'a' :
-                    printf("Ingrese la cantidad de Teclados que desea facturar: ");
-                    scanf("%f", &num1);
-                    break;
-                case 'b' :
-                    printf("Ingrese la cantidad de Auriculares que desea facturar: ");
-                    scanf("%f", &num2);
-                    break;
-                case 'c' :
-                    printf("Ingrese la cantidad de Tarjetas Graficas que desea facturar: ");
-                    scanf("%f", &num3);
-                    break;
+    do {
+        printf("==== Bienvenido al sistema de Smart Tech ====\n");
+        printf("1. Agregar producto\n");
+        printf("2. Mostrar factura\n");
+        printf("3. Salir\n");
+        
+        printf("Ingrese una opción: ");
+        scanf(" %c", &opcion);
 
-                default:
-                    printf("la opción elegida no existe \n");
-                    break;
-                }
-                printf("Desea facturar otro producto  1) Si   2) No: ");
-                fflush(stdin);
-                scanf("%d", &continuar1);
-            } while (continuar1 == 1);
-            break;
-        case 2:
-            printf("Ingrese su nombre: ");
-            scanf("%s", nombre);
-            printf("Ingrese su número de cédula: ");
-            scanf("%s", cedula);
-            tota = num1 * prca;
-            totb = num2 * prcb;
-            totc = num3 * prcc;
-
-
-            imprimirFactura(&num1, &num2, &num3, &prca, &prcb, &prcc, &tota, &totb, &totc, nombre, cedula);
-
-            subtotal = tota + totb + totc + totc;
-            printf("El subtotal sin descuento es: %.2f\n", subtotal);
-
-            subtotal = calculoSubtotal(subtotal);
-
-            total = subtotal * 1.12;
-
-            printf("El subtotal es: %.2f\n", subtotal);
-            printf("El total es: %.2f\n", total);
-            opcion1 = 3;
-            break;
-        case 3:
-            printf("Adios");
-            opcion1 = 3;
-            break;
-
-        default:
-            printf("Elija una opción correcta");
-            break;
+        switch (opcion) {
+            case '1':
+                agregarProducto(productos, &numProductos);
+                break;
+            case '2':
+                mostrarFactura(productos, numProductos);
+                break;
+            case '3':
+                printf("Saliendo del programa...\n");
+                break;
+            default:
+                printf("Opción inválida. Por favor, ingrese otro valor o intente nuevamente.\n");
+                break;
         }
-    } while (opcion1 != 3);
+
+        printf("\n");
+    } while (opcion != '3');
+
     return 0;
 }
