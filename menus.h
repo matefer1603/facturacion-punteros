@@ -1,2 +1,0 @@
-char menuProductos();
-int menuPrincipal();
